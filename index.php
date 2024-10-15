@@ -6,7 +6,13 @@
 # Show the REQUEST_URI (i.e. path) when the index is requested WITHOUT the query string (PHP_URL_PATH argument)
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
-require "src/router.php";
+
+# Autoloader uses namespaces to 'complete' the path to the appropriate file
+spl_autoload_register(function (string $class_name) {
+    # Since backslash only works in Windows, we replace all baskslashes in $class_name with normal slashes
+    var_dump("src/" . str_replace("\\", "/", $class_name) . ".php");
+    require "src/$class_name.php";
+});
 
 $router = new Router;
 $router->add("/", ["controller" => "home", "action" => "index"]);

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 class Actividades {
     public function view(){
         require "./view/actividades_view.php";

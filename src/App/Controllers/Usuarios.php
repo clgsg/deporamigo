@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
     # Create class Usuarios
     class Usuarios {
 
