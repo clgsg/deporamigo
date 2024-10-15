@@ -1,0 +1,5 @@
+{
+    "materialTheme.accent": "Acid Lime",
+    "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
+    "intelephense.format.braces": "k&r"
+}
