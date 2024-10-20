@@ -1,6 +1,7 @@
 <?php
 
-namespace Src\Reuse;
+namespace Reusable;
+
 class Router {
     private array $routes=[];
 

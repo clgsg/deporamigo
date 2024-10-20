@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+# Bring PDO object into namespace so we don't have to prefix it with path to root (backslash)
+use PDO;
 class Usuario {
     public function getUserData(): array
     {

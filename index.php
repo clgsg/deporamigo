@@ -10,21 +10,21 @@ $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 # Autoloader uses namespaces to 'complete' the path to the appropriate file
 spl_autoload_register(function (string $class_name) {
     # Since backslash only works in Windows, we replace all baskslashes in $class_name with normal slashes
-    var_dump("src/" . str_replace("\\", "/", $class_name) . ".php");
-    require "src/$class_name.php";
+    require "src/" . str_replace("\\", "/", $class_name) . ".php";
 });
 
-$router = new Router;
+$router = new Reusable\Router;
+# controller=class; action=method
 $router->add("/", ["controller" => "home", "action" => "index"]);
-$router->add("/home", ["controller" => "home", "action" => "index"]);
+$router->add("/home/index", ["controller" => "home", "action" => "index"]);
 $router->add("/usuarios", ["controller" => "usuarios", "action" => "view"]);
-$router->add("/usuarios/nuevo", ["controller" => "usuarios", "action" => "nuevo"]);
-$router->add("/usuarios/editar", ["controller" => "usuarios", "action" => "editar"]);
-$router->add("/usuarios/baja", ["controller" => "usuarios", "action" => "baja"]);
-$router->add("/actividades/buscar", ["controller" => "actividades", "action" => "buscar"]);
-$router->add("/actividades/crear", ["controller" => "actividades", "action" => "crear"]);
-$router->add("/actividades/editar_eliminar", ["controller" => "actividades", "action" => "editar_eliminar"]);
-$router->add("/actividades/inscribirse", ["controller" => "actividades", "action" => "inscribirse"]);
+$router->add("/usuarios/show", ["controller" => "usuarios", "action" => "show"]);
+#$router->add("/usuarios/editar", ["controller" => "usuarios", "action" => "editar"]);
+#$router->add("/usuarios/baja", ["controller" => "usuarios", "action" => "baja"]);
+$router->add("/actividades/view", ["controller" => "actividades", "action" => "view"]);
+$router->add("/actividades/show", ["controller" => "actividades", "action" => "show"]);
+#$router->add("/actividades/editar_eliminar", ["controller" => "actividades", "action" => "editar_eliminar"]);
+#$router->add("/actividades/inscribirse", ["controller" => "actividades", "action" => "inscribirse"]);
 
 $params = $router->match($path);
 
@@ -32,12 +32,13 @@ if ($params === false) {
     exit("No route matches your request");
 }
 
-$controller=$params["controller"];
+# Add path of namespace to $controller and turn name to initial uppercase (instead of hardcoding it in the list)
+$controller= "App\Controllers\\" . ucwords($params["controller"]);
 $action=$params["action"];
 
 
 # By converting the query word into a variable, we can change it dynamically
-require "./src/controllers/$controller.php";
+#require "./src/controllers/$controller.php";
 
 # Dynamically creating an object of the type defined in $controller
 $controller_object = new $controller;

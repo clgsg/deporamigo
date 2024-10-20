@@ -1,1 +1,4 @@
-Página actividades_show
+<?php
+
+
+echo "Página actividades_show";

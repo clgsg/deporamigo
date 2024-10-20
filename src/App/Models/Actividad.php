@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-class Usuario {
+# Bring PDO object into namespace so we don't have to prefix it with path to root (backslash)
+use PDO;
+class Actividad {
     public function geActivityData(): array
     {
         # $dsn: The Data Source Name, or DSN, contains the information required to connect to the database
@@ -20,8 +22,6 @@ class Usuario {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
     }
-
 
 }
