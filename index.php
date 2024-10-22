@@ -16,7 +16,7 @@ spl_autoload_register(function (string $class_name) {
 $router = new Reusable\Router;
 # controller=class; action=method
 $router->add("/", ["controller" => "home", "action" => "index"]);
-$router->add("/home/index", ["controller" => "home", "action" => "index"]);
+$router->add("/home", ["controller" => "home", "action" => "index"]);
 $router->add("/usuarios", ["controller" => "usuarios", "action" => "view"]);
 $router->add("/usuarios/show", ["controller" => "usuarios", "action" => "show"]);
 #$router->add("/usuarios/editar", ["controller" => "usuarios", "action" => "editar"]);

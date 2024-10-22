@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Usuarios - view</title>
-    </head>
-    <body>
+    
+
 <h1>Usuarios</h1>
 <!-- htmlspecialchars allows us to escape especial caracters for html rendering -->
 <?php foreach ($usuarios as $usuario): ?>
