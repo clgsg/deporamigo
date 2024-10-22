@@ -1,1 +1,4 @@
-Página actividades_view
+Esta es la página actividades_view
+
+</body>
+</html>

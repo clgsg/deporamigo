@@ -14,14 +14,14 @@ class Actividades {
 
         $viewer = new Viewer;
 
-        echo $viewer -> render("common/header.php");
+        echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Actividades"]);
         echo $viewer -> render("Actividades/view.php", ["actividades" => $actividades]);
         
     }
     public function show(){
         $viewer = new Viewer;
         
-        echo $viewer -> render("common/header.php");
+        echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Actividades"]);
         echo $viewer -> render("Actividades/show.php");
 
     }

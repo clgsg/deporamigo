@@ -1,4 +1,5 @@
-<?php
 
+Esta es la página Actividades/show
 
-echo "Página Actividades/show";
+</body>
+</html>

@@ -1,11 +1,17 @@
 <?php
 
 # The .htaccess file forwards all requests after the URL path to the index.php file
-# exit("Sending a message from index.php");
-#echo "Index here!!!";
+
+use Reusable\Exceptions\Exception404;
+
+
 # Show the REQUEST_URI (i.e. path) when the index is requested WITHOUT the query string (PHP_URL_PATH argument)
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
+if($path === false)
+{
+    throw new UnexpectedValueException("La URL introducida '{$_SERVER["REQUEST_URI"]}' no tiene el formato esperado.");
+}
 
 # Autoloader uses namespaces to 'complete' the path to the appropriate file
 spl_autoload_register(function (string $class_name) {
@@ -19,17 +25,13 @@ $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/home", ["controller" => "home", "action" => "index"]);
 $router->add("/usuarios", ["controller" => "usuarios", "action" => "view"]);
 $router->add("/usuarios/show", ["controller" => "usuarios", "action" => "show"]);
-#$router->add("/usuarios/editar", ["controller" => "usuarios", "action" => "editar"]);
-#$router->add("/usuarios/baja", ["controller" => "usuarios", "action" => "baja"]);
 $router->add("/actividades/view", ["controller" => "actividades", "action" => "view"]);
 $router->add("/actividades/show", ["controller" => "actividades", "action" => "show"]);
-#$router->add("/actividades/editar_eliminar", ["controller" => "actividades", "action" => "editar_eliminar"]);
-#$router->add("/actividades/inscribirse", ["controller" => "actividades", "action" => "inscribirse"]);
 
 $params = $router->match($path);
 
 if ($params === false) {
-    exit("No route matches your request");
+    throw new Exception404("No se encontraron rutas para '$path'");
 }
 
 # Add path of namespace to $controller and turn name to initial uppercase (instead of hardcoding it in the list)
