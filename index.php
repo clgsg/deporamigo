@@ -5,11 +5,14 @@ declare(strict_types=1);
 
 # To avoid showing information about our app if there's an error
 ini_set("display_errors", "0");
-# To show our custom view with an error message
-require "views/common/error.php";
 
 # To display the full path to the error log:   C:\xampp\php\logs\php_error_log
 # echo ini_get("error_log");
+# To log errors in default file
+ini_set("log_errors", "1");
+
+# To show our custom view with an error message
+require "views/common/error.php";
 
 use Reusable\Exceptions\Exception404;
 
