@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use \App\Models\Usuario;
-
+use Reusable\Viewer;
 # Create class Usuarios
 class Usuarios {
     public function view() {
@@ -17,9 +17,11 @@ class Usuarios {
         # We call the getUserData method on the object $model and assign its value to $usuarios
         $usuarios = $model-> getUserData();
 
+        $viewer = new Viewer;
+        $viewer->render("usuarios_view.php", $usuarios);
         # We require the view here, once $usuarios has been defined. 
         # If put at the beginning, $usuarios from view will not be available.
-        require "views/usuarios_view.php";
+        #require "views/usuarios_view.php";
 
     }
 
