@@ -10,15 +10,6 @@ use UnexpectedValueException;
 class Actividad {
     public function geActivityData()
     {
-        /*
-        # $dsn: The Data Source Name, or DSN, contains the information required to connect to the database
-        $dsn = "mysql:host=localhost;dbname=thegame;charset=utf8;port=3306";
-        # $dsn, $username and $password values + array of options
-        $pdo = new PDO($dsn, "root", "", [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        ]);
-        */
-
         $db = new Database("localhost","thegame","root","");
         $pdo = $db->getDBConnection();
 

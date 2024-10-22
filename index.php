@@ -3,18 +3,27 @@
 # The .htaccess file forwards all requests after the URL path to the index.php file
 declare(strict_types=1);
 
-# To avoid showing information about our app if there's an error
-ini_set("display_errors", "0");
-
-# To display the full path to the error log:   C:\xampp\php\logs\php_error_log
-# echo ini_get("error_log");
-# To log errors in default file
-ini_set("log_errors", "1");
-
-# To show our custom view with an error message
-require "views/common/error.php";
-
 use Reusable\Exceptions\Exception404;
+
+
+set_exception_handler(function(Throwable $exception)
+{
+    # To log errors in default file
+    ini_set("log_errors", "1");
+    # To avoid showing information about our app if there's an error
+    ini_set("display_errors", "0");
+    
+    # To display the full path to the error log:   C:\xampp\php\logs\php_error_log
+    # echo ini_get("error_log");
+    
+    # To show our custom view with an error message
+    require "views/common/error.php";
+
+    throw $exception;
+});
+
+
+
 
 
 # Show the REQUEST_URI (i.e. path) when the index is requested WITHOUT the query string (PHP_URL_PATH argument)
@@ -43,71 +52,15 @@ $router->add("/actividades/show", ["controller" => "actividades", "action" => "s
 $params = $router->match($path);
 
 if ($params === false) {
-    throw new Exception404("No se encontraron rutas para '$path'");
+    throw new Exception404("No se encontraron rutas para '$path'", 404);
 }
-
+#function __construct(string $message = "", int $code = 0, Throwable $previous = null) 
 # Add path of namespace to $controller and turn name to initial uppercase (instead of hardcoding it in the list)
 $controller= "App\Controllers\\" . ucwords($params["controller"]);
 $action=$params["action"];
-
-
-# By converting the query word into a variable, we can change it dynamically
-#require "./src/controllers/$controller.php";
 
 # Dynamically creating an object of the type defined in $controller
 $controller_object = new $controller;
 
 # We call the method defined as $action in the query string for the controller
 $controller_object->$action();
-
-
-
-
-#check whcat params are passed
-#var_dump($params);
-#exit;
-
-# Divide the value of $path into segments by slashes
-#$segments = explode("/", $path);
-
-
-# Check position of values entered into URL
-# print_r($segments);
-# exit;
-# Get the $action (pos. 5) and $controller (pos.4) values from the exploded URL PATH
-# URL = http://localhost/univr_PROYECTO/web_proyecto/controller/action/index.php
-# Array ( [0] => [1] => univr_PROYECTO [2] => web_proyecto [3] => controller [4] => action [5] => index.php )
-#$controller = $segments[2];
-#$action = $segments[3];
-#print_r($controller);
-#print_r($action);
-
-
-
-
-
-
-# Use the $action and $controller variables from the query string
-# $action = $_GET["action"];
-# $controller = $_GET["controller"];
-
-
-# Show the SERVER array
-# print_r($_SERVER);
-# exit;
-
-/*  =================================================
-            LO MISMO, PERO EN VERSIÓN TORPE:
-===================================================
-Método TORPE para determinar si se usa la función index de un controlador o de otro
-if ($action === "index") {
-    $controller->index();
-} elseif ($action === "show") {
-    $controller->show();
-} elseif ($action === "home") {
-    $controller->index();
-}
-Habría que duplicar la condición para las acciones y crear un objeto Usuario y otro Actividad ...
-
- */
-
