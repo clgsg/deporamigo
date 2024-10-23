@@ -10,7 +10,7 @@ use UnexpectedValueException;
 class Actividad {
     public function geActivityData()
     {
-        $db = new Database("localhost","thegame","root","");
+        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
 
         # VALUES RETRIEVED FROM THE PDO QUERY are stored as a variable statement
