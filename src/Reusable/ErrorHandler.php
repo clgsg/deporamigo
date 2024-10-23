@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Reusable;
 use ErrorException;
 use Throwable;
-use Reusable\Exceptions\Exception404;
 
 class ErrorHandler
 {
@@ -21,8 +20,7 @@ class ErrorHandler
 
 	public static function handleException(Throwable $exception):void
 	{
-		if($exception instanceof Exception404) {
-			http_response_code(404);
+		if(http_response_code(404)) {
 			$template = "404.php";
 		} else {
 			http_response_code(500);
@@ -35,7 +33,7 @@ class ErrorHandler
 		ini_set("display_errors", "1");
 		
 		# To show our custom view with an error message
-		require "/views/common/$template";
+		require "views/common/$template";
 	
 		throw $exception;
 	}
