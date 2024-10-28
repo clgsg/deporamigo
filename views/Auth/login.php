@@ -49,4 +49,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </main>
 
 <?php
-require ROOT_PATH . "/common/foother.php";
+require ROOT_PATH . "/common/footer.php";
