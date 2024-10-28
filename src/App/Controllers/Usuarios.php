@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use \App\Models\Usuario;
-use Reusable\Viewer;
+use Common\Viewer;
 # Create class Usuarios
 class Usuarios {
     public function view() {

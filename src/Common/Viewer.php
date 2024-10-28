@@ -1,6 +1,6 @@
 <?php
 
-namespace Reusable;
+namespace Common;
 class Viewer 
 {
     # By assigning a default value of empty array to $data, we make it optional

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use Reusable\Viewer;
+use Common\Viewer;
 class Home
 {
     public function index()

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 # 'use' indicates the correct namespace for Actividad, no need to prepend the whole route
 use \App\Models\Actividad;
-use Reusable\Viewer;
+use Common\Viewer;
 
 
 class Actividades {

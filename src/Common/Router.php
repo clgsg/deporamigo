@@ -1,6 +1,6 @@
 <?php
 
-namespace Reusable;
+namespace Common;
 
 class Router {
     private array $routes=[];

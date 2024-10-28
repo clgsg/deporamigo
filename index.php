@@ -11,13 +11,13 @@ spl_autoload_register(function (string $class_name) {
     require "src/" . str_replace("\\", "/", $class_name) . ".php";
 });
 
-$dotenv = new Reusable\Dotenv;
+$dotenv = new Common\Dotenv;
 $dotenv->load(".entorno");
 
 
-set_error_handler("Reusable\ErrorHandler::handleError");
+set_error_handler("Common\ErrorHandler::handleError");
 
-set_exception_handler("Reusable\ErrorHandler::handleException");
+set_exception_handler("Common\ErrorHandler::handleException");
 
 # Show the REQUEST_URI (i.e. path) when the index is requested WITHOUT the query string (PHP_URL_PATH argument)
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -27,7 +27,7 @@ if($path === false)
     throw new UnexpectedValueException("La URL introducida '{$_SERVER["REQUEST_URI"]}' no tiene el formato esperado.");
 }
 
-$router = new Reusable\Router;
+$router = new Common\Router;
 # controller=class; action=method
 $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/home", ["controller" => "home", "action" => "index"]);
