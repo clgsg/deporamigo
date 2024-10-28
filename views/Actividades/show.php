@@ -1,11 +1,10 @@
-
-<h2>Esta es la página Actividades/show</h2>
+<h1>Actividades / <strong>Show</strong></h1>
+<!-- htmlspecialchars allows us to escape especial caracters for html rendering -->
 <?php foreach ($actividades as $actividad): ?>
-    <h2>Id actividad <?= htmlspecialchars($actividad["id_actividad"]) ?></h2>
-    <p>Actividad: <?= htmlspecialchars($actividad["apodo"]) ?></p>
-    <p>Lugar: <?= htmlspecialchars($actividad["nombre"]) ?></p>
-    <p>Fecha: <?= htmlspecialchars($actividad["apellido1"])?> 
-    <p>Segundo apellido: <?= htmlspecialchars($actividad["apellido2"])?></p>
+    <h2>Número de actividad: <?= htmlspecialchars($actividad["id_actividad"]) ?></h2>
+    <p>Actividad: <?= htmlspecialchars($actividad["fk_deporte"]) ?></p>
+    <p>Lugar: <?= htmlspecialchars($actividad["fk_instalacion"]) ?></p>
+    
 <?php endforeach; ?>    
-</body>
+    </body>
 </html>

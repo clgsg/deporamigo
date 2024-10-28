@@ -20,6 +20,10 @@ class Usuarios {
     }
 
     public function show() {
+        $model = new Usuario;
+        # We call the getUserData method on the object $model and assign its value to $usuarios
+        $usuarios = $model-> getUserData();
+        
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Usuarios"]);
         echo $viewer -> render("Usuarios/show.php");

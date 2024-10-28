@@ -18,10 +18,13 @@ class Actividades {
         
     }
     public function show(){
+        $model = new Actividad;
+        $actividades = $model->geActivityData();
+        
         $viewer = new Viewer;
         
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Actividades"]);
-        echo $viewer -> render("Actividades/show.php");
+        echo $viewer -> render("Actividades/show.php", ["actividades" => $actividades]);
 
     }
 
