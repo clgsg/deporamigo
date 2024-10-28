@@ -12,7 +12,7 @@ spl_autoload_register(function (string $class_name) {
 });
 
 $dotenv = new Common\Dotenv;
-$dotenv->load(".entorno");
+$dotenv->load(".env");
 
 
 set_error_handler("Common\ErrorHandler::handleError");

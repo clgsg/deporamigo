@@ -8,7 +8,7 @@ class Dotenv
 {
 	public function load(string $path) : void 
 	{
-		# Recuperar valores de .entorno ignorando los retornos de linea
+		# Recuperar valores de .env ignorando los retornos de linea
 		$lines = file($path, FILE_IGNORE_NEW_LINES);
 
 		foreach ($lines as $line) {
