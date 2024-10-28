@@ -33,6 +33,9 @@ $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/home", ["controller" => "home", "action" => "index"]);
 $router->add("/usuarios", ["controller" => "usuarios", "action" => "view"]);
 $router->add("/usuarios/view", ["controller" => "usuarios", "action" => "view"]);
+$router->add("/usuarios/signup", ["controller" => "usuarios", "action" => "signup"]);
+$router->add("/usuarios/pwd", ["controller" => "usuarios", "action" => "retrieve_pwd"]);
+
 $router->add("/usuarios/show", ["controller" => "usuarios", "action" => "show"]);
 $router->add("/actividades/view", ["controller" => "actividades", "action" => "view"]);
 $router->add("/actividades", ["controller" => "actividades", "action" => "view"]);

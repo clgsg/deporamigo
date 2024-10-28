@@ -12,3 +12,9 @@ h2 {
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	color: coral;
 }
+
+.submitButton {
+	border-radius: 5px;
+	color: #f8f1f1;
+	background-color: coral;
+}

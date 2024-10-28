@@ -7,4 +7,9 @@
     <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
+<?php 
+require ROOT_PATH. "/views/Auth/login.php";
+
+?>
