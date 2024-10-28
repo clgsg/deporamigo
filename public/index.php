@@ -3,16 +3,16 @@
 
 declare(strict_types=1);
 
-#define("ROOT_PATH", dirname(__DIR__));
+define("ROOT_PATH", dirname(__DIR__));
 
 # Autoloader uses namespaces to 'complete' the path to the appropriate file
 spl_autoload_register(function (string $class_name) {
     # Since backslash only works in Windows, we replace all baskslashes in $class_name with normal slashes
-    require "src/" . str_replace("\\", "/", $class_name) . ".php";
+    require ROOT_PATH . "/src/" . str_replace("\\", "/", $class_name) . ".php";
 });
 
 $dotenv = new Common\Dotenv;
-$dotenv->load(".env");
+$dotenv->load(ROOT_PATH . "/.env");
 
 
 set_error_handler("Common\ErrorHandler::handleError");
@@ -32,8 +32,10 @@ $router = new Common\Router;
 $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/home", ["controller" => "home", "action" => "index"]);
 $router->add("/usuarios", ["controller" => "usuarios", "action" => "view"]);
+$router->add("/usuarios/view", ["controller" => "usuarios", "action" => "view"]);
 $router->add("/usuarios/show", ["controller" => "usuarios", "action" => "show"]);
 $router->add("/actividades/view", ["controller" => "actividades", "action" => "view"]);
+$router->add("/actividades", ["controller" => "actividades", "action" => "view"]);
 $router->add("/actividades/show", ["controller" => "actividades", "action" => "show"]);
 
 $params = $router->match($path);

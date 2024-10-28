@@ -13,7 +13,7 @@ class Viewer
         ob_start();
 
         # 'require' only allows display as webpage
-        require "views/$template";
+        require ROOT_PATH . "/views/$template";
 
         # Return the value of 'get contents and close the output buffer'
         return ob_get_clean();

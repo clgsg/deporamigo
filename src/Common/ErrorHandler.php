@@ -34,7 +34,7 @@ class ErrorHandler
 		ini_set("display_errors", "1");
 		
 		# To show our custom view with an error message
-		require "views/common/$template";
+		require ROOT_PATH . "/views/common/$template";
 	
 		throw $exception;
 	}

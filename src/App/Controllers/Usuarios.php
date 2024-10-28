@@ -19,13 +19,15 @@ class Usuarios {
 
     }
 
-    public function show() {
-        $model = new Usuario;
-        # We call the getUserData method on the object $model and assign its value to $usuarios
-        $usuarios = $model-> getUserData();
+    public function show(string $id) {
         
+        $model = new Usuario;
+        # We call the findUsrById method on the object $model and assign its value to $usuario
+        $usuario = $this->$model->findUsrById($id);
+
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Usuarios"]);
-        echo $viewer -> render("Usuarios/show.php");
+        # We use view Usuarios to return all data from $usuario
+        echo $this->$viewer->render("Usuarios/show.php", ["id_usuario" => $usuario]);
     }
 }
