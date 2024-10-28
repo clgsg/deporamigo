@@ -27,6 +27,7 @@ class Usuarios {
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Usuarios"]);
         echo $viewer -> render("Usuarios/show.php");
+        echo $viewer -> render("common/footer.php");
     }
     public function signup() {
         $model = new Usuario;
@@ -36,5 +37,6 @@ class Usuarios {
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Usuarios"]);
         echo $viewer -> render("Usuarios/signup.php");
+        echo $viewer -> render("common/footer.php");
     }
 }

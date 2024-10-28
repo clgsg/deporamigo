@@ -23,5 +23,16 @@ class Usuario {
 
     }
 
+    public static function getUserById(int $id)
+    {
+        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
+        $pdo = $db->getDBConnection();
 
+        $stmt = $pdo->query("SELECT * FROM usuarios WHERE id_usuario = $id");
+
+        if($stmt === null) {
+            throw new UnexpectedValueException("No hemos encontrado ningún usuario con id $id");
+        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
