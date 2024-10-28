@@ -1,5 +1,7 @@
 <?php
 
+use App\Authentication;
+use App\Redirect;
 use App\Models\Usuario;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -8,13 +10,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (Usuario::authenticate($conn, $_POST['username'], $_POST['password'])) {
         
-        Auth::login();
+        Authentication::login();
 
-        Url::redirect('/');
+        Redirect::redirect('/');
 
     } else {
         
-        $error = "login incorrect";
+        $error = "Error de inicio de sesión";
 
     }
 }
