@@ -17,9 +17,5 @@ class Viewer
 
         # Return the value of 'get contents and close the output buffer'
         return ob_get_clean();
-
-        # 'file_get_contents' gets the content WITHOUT executing it --> no rendering on browser
-        # return file_get_contents("views/$template");
-
     }
 }

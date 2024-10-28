@@ -1,28 +1,5 @@
-<?php
 
-use App\Authentication;
-use App\Redirect;
-use App\Models\Usuario;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $conn = require 'includes/db.php';
-
-    if (Usuario::authenticate($conn, $_POST['username'], $_POST['password'])) {
-        
-        Authentication::login();
-
-        Redirect::redirect('/');
-
-    } else {
-        
-        $error = "Error de inicio de sesión";
-
-    }
-}
-?>
-
-<main class="login">
 <h2 class="login_header><?php echo "DEPORAMIGO";?></h2>
 
 <p class="login_text">Inicia sesión o regístrate</p>
@@ -46,7 +23,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 </div>
 
-</main>
-
-<?php
-require ROOT_PATH . "/common/footer.php";

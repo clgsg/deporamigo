@@ -1,6 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Controllers;
+use \App\Models\Usuario;
+use Common\Viewer;
 
 
 class Authentication

@@ -11,10 +11,8 @@ spl_autoload_register(function (string $class_name) {
     require ROOT_PATH . "/src/" . str_replace("\\", "/", $class_name) . ".php";
 });
 
-
 $dotenv = new Common\Dotenv;
 $dotenv->load(ROOT_PATH . "/.env");
-
 
 set_error_handler("Common\ErrorHandler::handleError");
 set_exception_handler("Common\ErrorHandler::handleException");
@@ -35,8 +33,9 @@ $router->add("/usuarios", ["controller" => "usuarios", "action" => "view"]);
 $router->add("/usuarios/view", ["controller" => "usuarios", "action" => "view"]);
 $router->add("/usuarios/signup", ["controller" => "usuarios", "action" => "signup"]);
 $router->add("/usuarios/pwd", ["controller" => "usuarios", "action" => "retrieve_pwd"]);
-
+$router->add("/login", ["controller" => "usuarios", "action" => "login"]);
 $router->add("/usuarios/show", ["controller" => "usuarios", "action" => "show"]);
+
 $router->add("/actividades/view", ["controller" => "actividades", "action" => "view"]);
 $router->add("/actividades", ["controller" => "actividades", "action" => "view"]);
 $router->add("/actividades/show", ["controller" => "actividades", "action" => "show"]);

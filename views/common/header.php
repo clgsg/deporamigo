@@ -10,6 +10,6 @@
 
 <body>
 <?php 
-require ROOT_PATH. "/views/Auth/login.php";
+require ROOT_PATH. "/views/Usuarios/login.php";
 
 ?>
