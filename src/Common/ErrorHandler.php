@@ -20,7 +20,8 @@ class ErrorHandler
 
 	public static function handleException(Throwable $exception):void
 	{
-		if(http_response_code(404)) {
+		if($exception->getCode() === 404) {
+			http_response_code(404);
 			$template = "404.php";
 		} else {
 			http_response_code(500);
