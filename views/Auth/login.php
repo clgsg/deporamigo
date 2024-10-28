@@ -1,3 +1,25 @@
+<?php
+
+use App\Models\Usuario;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $conn = require 'includes/db.php';
+
+    if (Usuario::authenticate($conn, $_POST['username'], $_POST['password'])) {
+        
+        Auth::login();
+
+        Url::redirect('/');
+
+    } else {
+        
+        $error = "login incorrect";
+
+    }
+}
+?>
+
 <main class="login">
 <h2 class="login_header><?php echo "DEPORAMIGO";?></h2>
 
@@ -23,3 +45,6 @@
 </div>
 
 </main>
+
+<?php
+require ROOT_PATH . "/common/foother.php";

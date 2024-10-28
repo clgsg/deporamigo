@@ -11,12 +11,12 @@ spl_autoload_register(function (string $class_name) {
     require ROOT_PATH . "/src/" . str_replace("\\", "/", $class_name) . ".php";
 });
 
+
 $dotenv = new Common\Dotenv;
 $dotenv->load(ROOT_PATH . "/.env");
 
 
 set_error_handler("Common\ErrorHandler::handleError");
-
 set_exception_handler("Common\ErrorHandler::handleException");
 
 # Show the REQUEST_URI (i.e. path) when the index is requested WITHOUT the query string (PHP_URL_PATH argument)

@@ -1,7 +1,7 @@
     
 
 <h1>Registrarse como usuario</h1>
-<form class="form">
+<form class="form" method="post">
     <div class="formField">
         <label class="formLabel" for="email">Correo electrónico</label>
         <input id="email" type="email" class="formInput" placeholder="Correo de usuario" name="correo">
