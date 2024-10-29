@@ -8,7 +8,7 @@ use App\Database;
 use UnexpectedValueException;
 
 class Actividad {
-    public function geActivityData()
+    public static function getActivityData()
     {
         $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
@@ -21,6 +21,42 @@ class Actividad {
             throw new UnexpectedValueException("No hemos encontrado ninguna actividad");
         }
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public static function addActivity($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores=null, $max_jugadores=null)
+    {
+        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
+        $pdo = $db->getDBConnection();
+
+        # VALUES RETRIEVED FROM THE PDO QUERY are stored as a variable statement
+        # $query: The SQL statement to prepare and execute. If the SQL contains placeholders, PDO::prepare() and PDOStatement::execute() must be used instead
+        $stmt = $pdo->query("
+                insert into actividades (fk_usuario, fk_deporte, fecha, fk_instalacion, min_jugadores, max_jugadores)
+                values (
+                    (select id_usuario from usuarios where apodo = :apodo), 
+                    (select id_deporte from deportes where deporte = :deporte),
+                    :fecha,
+                    (select id_instalacion from instalaciones where nombre_instalacion = :nombre_instalacion),
+                    :min_jugadores ,
+                    :max_jugadores 
+                );
+            ");
+
+        $stmt->bindValue(':apodo', $apodo, PDO::PARAM_STR);
+        $stmt->bindValue(':deporte', $deporte, PDO::PARAM_STR);
+        $stmt->bindValue(':fecha', $fecha, PDO::PARAM_STR);
+        $stmt->bindValue(':nombre_instalacion', $nombre_instalacion, PDO::PARAM_STR);
+        $stmt->bindValue(':min_jugadores', $min_jugadores, PDO::PARAM_INT);
+        $stmt->bindValue(':max_jugadores', $max_jugadores, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Actividad');
+        $stmt->execute();
+
+        if($stmt === null) {
+            throw new UnexpectedValueException("No hemos encontrado ninguna actividad");
+        }
+        # return each row as an array indexed by column name as returned in the corresponding result set.
+        return $stmt->fetchAll(PDO::FETCH_NAMED);
 
     }
 
