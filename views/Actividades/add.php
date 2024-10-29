@@ -5,10 +5,14 @@
 <form class="form" method="post">
     <div class="formField">
         <label class="formLabel" for="tipoActividad">Tipo de actividad</label>
-        <select name="tipoActividad" id="tipoActividad">
-            <option value="<?php echo $value['profile']; ?>">
-                <?php echo $value['profile']; ?>
-            </option> 
+        <select name="tipoActividad" id="tipoActividad" placeholder="Elige un deporte" size="1" required>
+                <!-- TODO: añadir foreach que recupere deportes en el desplegable  -->
+            <option value="bádminton">bádminton </option>
+            <option value="baloncesto">baloncesto </option>
+            <option value="caminata">caminata</option>
+            <option value="ciclismo">ciclismo</option>
+            <option value="fútbol">fútbol</option>
+            
         </select>
     </div>
     <div class="formField">
