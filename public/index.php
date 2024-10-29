@@ -57,3 +57,4 @@ $controller_object = new $controller;
 
 # We call the method defined as $action in the query string for the controller
 $controller_object->$action();
+

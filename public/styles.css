@@ -17,8 +17,14 @@ div .formField{
 	width: min(95%, 120rem);
 }
 
-.submitButton {
+.submitButton, .darkButton {
 	border-radius: 5px;
 	color: #f8f1f1;
 	background-color: coral;
+}
+
+.lightButton {
+	border-radius: 5px;
+	color: coral;
+	background-color: #f8f1f1;
 }

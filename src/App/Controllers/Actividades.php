@@ -31,9 +31,14 @@ class Actividades {
     }
 
 
-   /* public function add($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores=null, $max_jugadores=null){
+   #public function add($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores=null, $max_jugadores=null){
+   public function add(){
+        if ($_SERVER['REQUEST_METHOD']=='POST'){
+            var_dump($_POST);
+        }
+    
         $model = new Actividad;
-        $actividades = $model->addActivity($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores=null, $max_jugadores=null);
+        $actividades = $model->addActivity($apodo=null, $deporte=null, $fecha=null, $nombre_instalacion=null, $min_jugadores=null, $max_jugadores=null);
         
         $viewer = new Viewer;
         
@@ -42,19 +47,5 @@ class Actividades {
         echo $viewer -> render("common/footer.php");
 
 
-    }   */
-
-    public function add(){
-        $model = new Actividad;
-        $actividades = $model->addActivity();
-        
-        $viewer = new Viewer;
-        
-        echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Actividades"]);
-        echo $viewer -> render("Actividades/add.php", ["actividades" => $actividades]);
-        echo $viewer -> render("common/footer.php");
-
-
-    }
-
+    }   
 }
