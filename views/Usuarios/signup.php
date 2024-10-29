@@ -26,9 +26,10 @@
         <label class="formLabel" for="pwd">Contraseña</label>
         <input id="pwd" type="password" class="formInput" placeholder="Contraseña" name="contraseña">
     </div>
-
-    <input class="clearButton"  type="clear" value="Borrar formulario">
-    <input class="submitButton"  type="submit" value="Registrarme">
+    <div>
+    <button class="lightButton">Borrar formulario</button>
+    <button class="darkButton">Registrarme</button>
+    </div>
 </form>
 
 </body>
