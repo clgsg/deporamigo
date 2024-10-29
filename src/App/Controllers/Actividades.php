@@ -31,14 +31,21 @@ class Actividades {
     }
 
 
-   #public function add($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores=null, $max_jugadores=null){
-   public function add(){
+   public function add($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores=null, $max_jugadores=null){
+   #public function add(){
+        $apodo=$_POST["apodo"];
+        $deporte=$_POST["deporte"];
+        $fecha=$_POST["fecha"];
+        $nombre_instalacion=$_POST["nombre_instalacion"];
+        $min_jugadores=$_POST["$min_jugadores"];
+        $max_jugadores=$_POST["$max_jugadores"];
+
         if ($_SERVER['REQUEST_METHOD']=='POST'){
             var_dump($_POST);
         }
     
         $model = new Actividad;
-        $actividades = $model->addActivity($apodo=null, $deporte=null, $fecha=null, $nombre_instalacion=null, $min_jugadores=null, $max_jugadores=null);
+        $actividades = $model->addActivity($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores, $max_jugadores);
         
         $viewer = new Viewer;
         

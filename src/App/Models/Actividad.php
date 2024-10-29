@@ -24,7 +24,8 @@ class Actividad {
 
     }
 
-   /* public static function addActivity($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores=null, $max_jugadores=null)
+   public static function addActivity($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores=null, $max_jugadores=null)
+   #public static function addActivity()
     {
         $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
@@ -51,6 +52,7 @@ class Actividad {
         $stmt->bindValue(':max_jugadores', $max_jugadores, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Actividad');
         $stmt->execute();
+        
 
         if($stmt === null) {
             throw new UnexpectedValueException("No hemos encontrado ninguna actividad");
@@ -59,8 +61,9 @@ class Actividad {
         return $stmt->fetchAll(PDO::FETCH_NAMED);
 
     }
-    */
+    
 
+    /*
     public static function addActivity()
     {
         $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
@@ -84,7 +87,7 @@ class Actividad {
         # return each row as an array indexed by column name as returned in the corresponding result set.
         return $stmt->fetchAll(PDO::FETCH_NAMED);
 
-    }
+    }       */
 
 
 }
