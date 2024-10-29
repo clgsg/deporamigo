@@ -13,6 +13,10 @@ h2 {
 	color: coral;
 }
 
+div .formField{
+	width: min(95%, 120rem);
+}
+
 .submitButton {
 	border-radius: 5px;
 	color: #f8f1f1;

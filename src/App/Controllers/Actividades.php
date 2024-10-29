@@ -15,6 +15,8 @@ class Actividades {
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Actividades"]);
         echo $viewer -> render("Actividades/view.php", ["actividades" => $actividades]);
+        echo $viewer -> render("common/footer.php");
+
         
     }
     public function show(){
@@ -25,6 +27,8 @@ class Actividades {
         
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Actividades"]);
         echo $viewer -> render("Actividades/show.php", ["actividades" => $actividades]);
+        echo $viewer -> render("common/footer.php");
+
 
     }
 

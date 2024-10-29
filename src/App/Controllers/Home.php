@@ -8,7 +8,6 @@ class Home
     {
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Home"]);
-        echo $viewer-> render("Home/index.php");
+        echo $viewer -> render("common/footer.php");
     }
-
 }

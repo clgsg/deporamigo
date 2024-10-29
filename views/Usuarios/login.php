@@ -18,6 +18,7 @@
 </form>
 <div class="">
     <a class="darkLink" href="/usuarios/signup.php">Darme de alta en el servicio</a>
+    <br>
     <a class="darkLink" href="/usuarios/retrieve_pwd.php">Olvidé mi contraseña</a>
 
     
