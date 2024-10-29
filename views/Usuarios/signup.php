@@ -11,6 +11,10 @@
         <input id="apodo" type="text" class="formInput" placeholder="Apodo (nombre de usuario)" name="apodo">
     </div>
     <div class="formField">
+        <label class="formLabel" for="nombre">Nombre</label>
+        <input id="nombre" type="text" class="formInput" placeholder="Nombre" name="nombre">
+    </div>
+    <div class="formField">
         <label class="formLabel" for="apellido1">Primer apellido</label>
         <input id="apellido1" type="text" class="formInput" placeholder="Primer apellido" name="apellido1">
     </div>

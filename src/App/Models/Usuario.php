@@ -6,6 +6,8 @@ namespace App\Models;
 use PDO;
 use App\Database;
 use UnexpectedValueException;
+
+
 class Usuario {
 
     public $id_usuario;
