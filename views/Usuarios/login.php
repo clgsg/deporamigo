@@ -4,7 +4,7 @@
 
 <p class="login_text">Inicia sesión o regístrate</p>
 
-<form class="form">
+<form class="form" method="post">
     <div class="formField">
         <label class="formLabel" for="email">Correo electrónico</label>
         <input id="email" type="email" class="formInput" placeholder="Email con el que te registraste" name="email">
