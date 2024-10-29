@@ -7,7 +7,8 @@ class Home
     public function index()
     {
         $viewer = new Viewer;
-        echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Home"]);
+        echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Inicio"]);
+        echo $viewer -> render("Usuarios/login.php");
         echo $viewer -> render("common/footer.php");
     }
 }

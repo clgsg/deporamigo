@@ -10,9 +10,3 @@
 
 <body>
 <h3>DEPORAMIGO | Haz deporte. Haz amigos</h3>
-
-
-<?php 
-require ROOT_PATH. "/views/Usuarios/login.php";
-
-?>
