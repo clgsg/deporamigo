@@ -20,19 +20,13 @@ class Usuarios {
     }
 
     public function show() {
-        $model = new Usuario;
-        # We call the getUserData method on the object $model and assign its value to $usuarios
-        $usuarios = $model-> getUserData();
-
+       
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Usuarios"]);
         echo $viewer -> render("Usuarios/show.php");
         echo $viewer -> render("common/footer.php");
     }
     public function signup() {
-        $model = new Usuario;
-        # We call the getUserData method on the object $model and assign its value to $usuarios
-        $usuarios = $model-> getUserData();
 
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Darse de alta"]);
@@ -41,13 +35,18 @@ class Usuarios {
     }
 
     public function login() {
-        $model = new Usuario;
-        # We call the getUserData method on the object $model and assign its value to $usuarios
-        $usuarios = $model-> getUserData();
-
+        
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Acceso"]);
         echo $viewer -> render("Usuarios/login.php");
+        echo $viewer -> render("common/footer.php");
+    }
+
+    public function pwd() {
+        
+        $viewer = new Viewer;
+        echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Contraseña"]);
+        echo $viewer -> render("Usuarios/pwd.php");
         echo $viewer -> render("common/footer.php");
     }
 }

@@ -68,4 +68,32 @@ class Usuario {
     }
 
 
+    #   public static function pwd($usuario, $apodo)
+    public static function pwd(int $id_usuario, string $apodo)
+    {
+        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
+        $pdo = $db->getDBConnection();
+        $apodo="lugassi";
+        $id_usuario=1;
+        $correo = $pdo->query("select e.email 
+        from emails e 
+        join usuarios u on u.id_usuario = e.fk_usuario 
+        where 
+        u.apodo = $apodo and u.id_usuario = $id_usuario");
+
+        /*
+        $correo->bindValue(':id_usuario', $id_usuario, PDO::PARAM_INT);
+        $correo->bindValue(':apodo', $apodo, PDO::PARAM_INT);
+        */
+        $correo->setFetchMode(PDO::FETCH_CLASS, 'Usuario');
+        $correo->execute();
+        
+
+        if($correo === null) {
+            echo "Enlace enviado a tu correo electrónico";
+        } else {
+            echo "Enlace enviado a tu correo electrónico";
+            return $correo->fetchColumn(PDO::FETCH_ASSOC);
+        }
+    }
 }
