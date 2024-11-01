@@ -28,3 +28,18 @@ div .formField{
 	color: coral;
 	background-color: #f8f1f1;
 }
+
+.redButton{
+	border-radius: 5px;
+	color: #f8f1f1;
+	background-color: rgb(180, 19, 19);
+}
+
+.disabledFormLabel {
+	color: lightslategray;
+}
+
+.disabledField {
+	color: lightslategray;
+	background-color: lightgrey;
+}

@@ -40,6 +40,7 @@ $router->add("/actividades/view", ["controller" => "actividades", "action" => "v
 $router->add("/actividades", ["controller" => "actividades", "action" => "view"]);
 $router->add("/actividades/show", ["controller" => "actividades", "action" => "show"]);
 $router->add("/actividades/add", ["controller" => "actividades", "action" => "add"]);
+$router->add("/actividades/edit", ["controller" => "actividades", "action" => "editActivity"]);
 
 $params = $router->match($path);
 
