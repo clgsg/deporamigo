@@ -70,7 +70,7 @@
         <textarea id="notasBox" name="notas" rows="5" cols="50" placeholder="¿Algo que añadir? (Ejemplo: Falta equipamiento, se mantiene en caso de lluvia, etc.)"></textarea>
     </div>
     <div>
-    <button class="lightButton">Borrar formulario</button>
+    <button class="lightButton">Limpiar formulario</button>
     <button class="darkButton">Crear actividad</button>
     </div>
 </form>

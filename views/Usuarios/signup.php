@@ -27,7 +27,7 @@
         <input id="pwd" type="password" class="formInput" placeholder="Contraseña" name="contraseña">
     </div>
     <div>
-    <button class="lightButton">Borrar formulario</button>
+    <button class="lightButton">Limpiar formulario</button>
     <button class="darkButton">Registrarme</button>
     </div>
 </form>
