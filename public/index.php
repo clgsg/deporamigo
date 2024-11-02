@@ -26,6 +26,9 @@ if($path === false)
 
 $router = new Common\Router;
 # controller=class; action=method
+$router->add("/{controller}/{action}");
+$router->add("/{controller}/{id}/{action}");
+/*
 $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/home", ["controller" => "home", "action" => "index"]);
 $router->add("/usuarios", ["controller" => "usuarios", "action" => "ver"]);
@@ -40,19 +43,9 @@ $router->add("/actividades", ["controller" => "actividades", "action" => "ver"])
 $router->add("/actividades/mostrar", ["controller" => "actividades", "action" => "mostrar"]);
 $router->add("/actividades/nueva", ["controller" => "actividades", "action" => "nuevaActividad"]);
 $router->add("/actividades/editar", ["controller" => "actividades", "action" => "editarActividad"]);
+*/
 
-$params = $router->match($path);
+$dispatcher = new Common\Dispatcher($router);
 
-if ($params === false) {
-    throw new UnexpectedValueException("No se encontraron rutas para '$path'", 404);
-}
-
-# Add path of namespace to $controller and turn name to initial uppercase (instead of hardcoding it in the list)
-$controller= "App\Controllers\\" . ucwords($params["controller"]);
-$action=$params["action"];
-
-# Dynamically creating an object of the type defined in $controller
-$controller_object = new $controller;
-
-# We call the method defined as $action in the query string for the controller
-$controller_object->$action();
+# Llamamos el método 'handle' del dispatcher y le pasamos la ruta $path
+$dispatcher->handle($path);

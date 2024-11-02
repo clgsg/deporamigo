@@ -8,13 +8,13 @@ use App\Database;
 use UnexpectedValueException;
 
 class Actividad {
-    public $id_actividad;
-    public $deporte;
-    public $fecha;
-    public $lugar;
-    public $min_jugadores;
-    public $max_jugadores;
-    public $comentarios;
+    private $id_actividad;
+    private $deporte;
+    private $fecha;
+    private $lugar;
+    private $min_jugadores;
+    private $max_jugadores;
+    private $comentarios;
 
     public  function getInfoAllActivities()
     {
@@ -70,7 +70,7 @@ class Actividad {
 
 
    #public  function nuevaActividad(string $apodo, string $deporte, string $fecha, string $lugar, int $min_jugadores=null, int $max_jugadores=null, string $comentarios)
-   public function nuevaActividad()
+   public function nueva()
     {
         /*
         $apodo = $this->$apodo;
@@ -128,7 +128,7 @@ class Actividad {
     }
     
 
-    public  function editarActividad(int $id_actividad){
+    public  function editar(int $id_actividad){
 
         $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();

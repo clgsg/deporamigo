@@ -8,7 +8,7 @@ class Home
     {
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Inicio"]);
-        echo $viewer -> render("Usuarios/login.php");
+        echo $viewer -> render("Usuarios/acceso.php");
         echo $viewer -> render("common/footer.php");
     }
 }

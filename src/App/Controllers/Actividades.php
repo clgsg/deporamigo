@@ -32,7 +32,7 @@ class Actividades {
 
 
    #public function nuevaActividad($apodo, $deporte, $fecha, $lugar, $min_jugadores=null, $max_jugadores=null, $comentarios){
-   public function nuevaActividad(){
+   public function nueva(){
        
         /*
         $apodo=$_POST["apodo"];
@@ -55,7 +55,7 @@ class Actividades {
     
         $model = new Actividad;
         #$actividades = $model->nuevaActividad($apodo, $deporte, $fecha, $lugar, $min_jugadores, $max_jugadores, $comentarios);
-        $actividades = $model->nuevaActividad();
+        $actividades = $model->nueva();
         
         $viewer = new Viewer;
         
@@ -66,8 +66,8 @@ class Actividades {
 
     }   
 
-    public function editarActividad(){
-    /*public function editarActividad($id_actividad, $apodo, $fecha, $min_jugadores , $max_jugadores , $id_instalacion, $comentarios){
+    public function editar(){
+    /*public function editar($id_actividad, $apodo, $fecha, $min_jugadores , $max_jugadores , $id_instalacion, $comentarios){
         $id_actividad=$_POST["id_actividad"];
         $apodo=$_POST["apodo"];
         $fecha=$_POST["fecha"];
@@ -86,7 +86,7 @@ class Actividades {
 
         $model = new Actividad;
 
-        # Si se clica Guardar cambios --> editarActividad
+        # Si se clica Guardar cambios --> editar
         #$actividades = $model->editarActividad($id_actividad, $apodo, $fecha, $id_instalacion, $min_jugadores, $max_jugadores, $comentarios);
         # Si se clica Eliminar actividad --> eliminarActividad
         #$actividades = $model->eliminarActividad($id_actividad);
