@@ -8,59 +8,66 @@ use Common\Viewer;
 
 
 class Actividades {
-    public function view(){
+    public function ver(){
         $model = new Actividad;
         $actividades = $model->getInfoAllActivities();
 
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Actividades"]);
-        echo $viewer -> render("Actividades/view.php", ["actividades" => $actividades]);
+        echo $viewer -> render("Actividades/ver.php", ["actividades" => $actividades]);
         echo $viewer -> render("common/footer.php");
 
         
     }
-    public function show(){
+    public function mostrar(){
         $model = new Actividad;
         $actividades = $model->getInfoAllActivities();
         
         $viewer = new Viewer;
         
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Actividades"]);
-        echo $viewer -> render("Actividades/show.php", ["actividades" => $actividades]);
+        echo $viewer -> render("Actividades/mostrar.php", ["actividades" => $actividades]);
         echo $viewer -> render("common/footer.php");
     }
 
 
-   public function add($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores=null, $max_jugadores=null){
-   #public function add(){
+   #public function nuevaActividad($apodo, $deporte, $fecha, $lugar, $min_jugadores=null, $max_jugadores=null, $comentarios){
+   public function nuevaActividad(){
+       
+        /*
         $apodo=$_POST["apodo"];
         $deporte=$_POST["deporte"];
         $fecha=$_POST["fecha"];
-        $nombre_instalacion=$_POST["nombre_instalacion"];
-        $min_jugadores=$_POST["$min_jugadores"];
-        $max_jugadores=$_POST["$max_jugadores"];
+        $lugar=$_POST["lugar"];
+        $min_jugadores=$_POST["min_jugadores"];
+        $max_jugadores=$_POST["max_jugadores"];
+        $comentarios=$_POST["comentarios"];
+        */
 
        # COMPROBAR VALORES DE POST 
        # -----  eliminar ----
         if ($_SERVER['REQUEST_METHOD']=='POST'){
+            echo "<pre>";
             var_dump($_POST);
+            echo "<pre>";
         } 
         #-----------------------
     
         $model = new Actividad;
-        $actividades = $model->addActivity($apodo, $deporte, $fecha, $nombre_instalacion, $min_jugadores, $max_jugadores);
+        #$actividades = $model->nuevaActividad($apodo, $deporte, $fecha, $lugar, $min_jugadores, $max_jugadores, $comentarios);
+        $actividades = $model->nuevaActividad();
         
         $viewer = new Viewer;
         
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Actividades"]);
-        echo $viewer -> render("Actividades/add.php", ["actividades" => $actividades]);
+        echo $viewer -> render("Actividades/nueva.php", ["actividades" => $actividades]);
         echo $viewer -> render("common/footer.php");
 
 
     }   
 
-    public function editActivity(){
-    /*public function editActivity($id_actividad, $apodo, $fecha, $min_jugadores , $max_jugadores , $id_instalacion, $comentarios){
+    public function editarActividad(){
+    /*public function editarActividad($id_actividad, $apodo, $fecha, $min_jugadores , $max_jugadores , $id_instalacion, $comentarios){
         $id_actividad=$_POST["id_actividad"];
         $apodo=$_POST["apodo"];
         $fecha=$_POST["fecha"];
@@ -69,21 +76,28 @@ class Actividades {
         $max_jugadores=$_POST["$max_jugadores"];
         $comentarios=$_POST["$comentarios"];
         */
-        # COMPROBAR VALORES DE POST 
-       # -----  eliminar ----
+        # COMPROBAR VALORES DE POST   # -----  eliminar -----------------#
        if ($_SERVER['REQUEST_METHOD']=='POST'){
-        var_dump($_POST);
+            echo "<pre>";
+            var_dump($_POST);
+            echo "<pre>";
     } 
     #-----------------------
 
         $model = new Actividad;
-        #$actividades = $model->editActivity($id_actividad, $apodo, $fecha, $id_instalacion, $min_jugadores, $max_jugadores, $comentarios);
+
+        # Si se clica Guardar cambios --> editarActividad
+        #$actividades = $model->editarActividad($id_actividad, $apodo, $fecha, $id_instalacion, $min_jugadores, $max_jugadores, $comentarios);
+        # Si se clica Eliminar actividad --> eliminarActividad
+        #$actividades = $model->eliminarActividad($id_actividad);
         
         $viewer = new Viewer;
         
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Actividades"]);
-        echo $viewer -> render("Actividades/edit.php");  #, ["actividades" => $actividades]);
+        echo $viewer -> render("Actividades/editar.php");  #, ["actividades" => $actividades]);
         echo $viewer -> render("common/footer.php");
 
     }
+
+    
 }

@@ -17,9 +17,9 @@
     <input class="submitButton"  type="submit" value="Iniciar sesión">
 </form>
 <div class="">
-    <a class="darkLink" href="/usuarios/signup">Darme de alta en el servicio</a>
+    <a class="darkLink" href="/usuarios/registrarse">Darme de alta en el servicio</a>
     <br>
-    <a class="darkLink" href="/usuarios/retrieve_pwd">Olvidé mi contraseña</a>
+    <a class="darkLink" href="/usuarios/pwd">Olvidé mi contraseña</a>
 
     
 </div>

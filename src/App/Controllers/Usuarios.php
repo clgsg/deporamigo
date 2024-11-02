@@ -6,7 +6,7 @@ use \App\Models\Usuario;
 use Common\Viewer;
 # Create class Usuarios
 class Usuarios {
-    public function view() {
+    public function ver() {
 
         $model = new Usuario;
         # We call the getUserData method on the object $model and assign its value to $usuarios
@@ -15,30 +15,30 @@ class Usuarios {
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Usuarios"]);
         # Data is passed as an associative array
-        echo $viewer->render("Usuarios/view.php", ["usuarios" => $usuarios]);
+        echo $viewer->render("Usuarios/ver.php", ["usuarios" => $usuarios]);
         echo $viewer -> render("common/footer.php");
     }
 
-    public function show() {
+    public function mostrar() {
        
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Usuarios"]);
-        echo $viewer -> render("Usuarios/show.php");
+        echo $viewer -> render("Usuarios/mostrar.php");
         echo $viewer -> render("common/footer.php");
     }
-    public function signup() {
+    public function registrarse() {
 
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Darse de alta"]);
-        echo $viewer -> render("Usuarios/signup.php");
+        echo $viewer -> render("Usuarios/registrarse.php");
         echo $viewer -> render("common/footer.php");
     }
 
-    public function login() {
+    public function acceder() {
         
         $viewer = new Viewer;
         echo $viewer -> render("common/header.php", ["title" => "DeporAmigo - Acceso"]);
-        echo $viewer -> render("Usuarios/login.php");
+        echo $viewer -> render("Usuarios/acceso.php");
         echo $viewer -> render("common/footer.php");
     }
 

@@ -1,5 +1,4 @@
 <?php
-# The .htaccess file forwards all requests after the URL path to the index.php file
 
 declare(strict_types=1);
 
@@ -29,18 +28,18 @@ $router = new Common\Router;
 # controller=class; action=method
 $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/home", ["controller" => "home", "action" => "index"]);
-$router->add("/usuarios", ["controller" => "usuarios", "action" => "view"]);
-$router->add("/usuarios/view", ["controller" => "usuarios", "action" => "view"]);
-$router->add("/usuarios/signup", ["controller" => "usuarios", "action" => "signup"]);
+$router->add("/usuarios", ["controller" => "usuarios", "action" => "ver"]);
+$router->add("/usuarios/ver", ["controller" => "usuarios", "action" => "ver"]);
+$router->add("/usuarios/registrarse", ["controller" => "usuarios", "action" => "registrarse"]);
 $router->add("/usuarios/pwd", ["controller" => "usuarios", "action" => "pwd"]);
-$router->add("usuarios/login", ["controller" => "usuarios", "action" => "login"]);
-$router->add("/usuarios/show", ["controller" => "usuarios", "action" => "show"]);
+$router->add("usuarios/acceso", ["controller" => "usuarios", "action" => "acceso"]);
+$router->add("/usuarios/mostrar", ["controller" => "usuarios", "action" => "mostrar"]);
 
-$router->add("/actividades/view", ["controller" => "actividades", "action" => "view"]);
-$router->add("/actividades", ["controller" => "actividades", "action" => "view"]);
-$router->add("/actividades/show", ["controller" => "actividades", "action" => "show"]);
-$router->add("/actividades/add", ["controller" => "actividades", "action" => "add"]);
-$router->add("/actividades/edit", ["controller" => "actividades", "action" => "editActivity"]);
+$router->add("/actividades/ver", ["controller" => "actividades", "action" => "ver"]);
+$router->add("/actividades", ["controller" => "actividades", "action" => "ver"]);
+$router->add("/actividades/mostrar", ["controller" => "actividades", "action" => "mostrar"]);
+$router->add("/actividades/nueva", ["controller" => "actividades", "action" => "nuevaActividad"]);
+$router->add("/actividades/editar", ["controller" => "actividades", "action" => "editarActividad"]);
 
 $params = $router->match($path);
 
@@ -48,7 +47,6 @@ if ($params === false) {
     throw new UnexpectedValueException("No se encontraron rutas para '$path'", 404);
 }
 
-#function __construct(string $message = "", int $code = 0, Throwable $previous = null) 
 # Add path of namespace to $controller and turn name to initial uppercase (instead of hardcoding it in the list)
 $controller= "App\Controllers\\" . ucwords($params["controller"]);
 $action=$params["action"];
@@ -58,4 +56,3 @@ $controller_object = new $controller;
 
 # We call the method defined as $action in the query string for the controller
 $controller_object->$action();
-

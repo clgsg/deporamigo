@@ -22,7 +22,7 @@ class Authentication
     }
 
     /* Log in with session */
-    public static function login()
+    public static function acceder()
     {
         session_regenerate_id(true);
         $_SESSION['is_logged_in'] = true;

@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (Usuario::authenticate($conn, $_POST['username'], $_POST['password'])) {
         
-        Authentication::login();
+        Authentication::acceder();
 
         Redirect::redirect('/');
 

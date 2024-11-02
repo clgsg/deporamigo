@@ -7,30 +7,33 @@
     </div>
     <div class="formField">
         <label class="formLabel" for="lugar">Lugar</label>
+
+
+
         <select name="lugar" id="lugar" placeholder="Elige un deporte" size="1"  >
                 <!-- TODO: añadir foreach que recupere deportes en el desplegable  -->
             <option value="P.M. Alejandra Valle"> 
-                <?php $nombre_instalacion=htmlspecialchars("P.M. Alejandra Valle"); echo "P.M. Alejandra Valle"; ?> 
+                <?php $lugar=htmlspecialchars("P.M. Alejandra Valle"); echo "P.M. Alejandra Valle"; ?> 
             </option>
             <option value="DeporFit"> 
-                <?php $nombre_instalacion=htmlspecialchars("DeporFit");  echo "DeporFit"; ?>  
+                <?php $lugar=htmlspecialchars("DeporFit");  echo "DeporFit"; ?>  
             </option>
             <option value="P.M. Santa Cecilia">
-                <?php $nombre_instalacion=htmlspecialchars("P.M. Santa Cecilia");  echo "P.M. Santa Cecilia"; ?> 
+                <?php $lugar=htmlspecialchars("P.M. Santa Cecilia");  echo "P.M. Santa Cecilia"; ?> 
             </option>
             <option value="P.M. Vallelado">
-                 <?php $nombre_instalacion=htmlspecialchars("P.M. Vallelado");  echo "P.M. Vallelado"; ?> 
+                 <?php $lugar=htmlspecialchars("P.M. Vallelado");  echo "P.M. Vallelado"; ?> 
                 </option>
             <option value="otro">
-                 <?php $nombre_instalacion=htmlspecialchars("otro");  echo "otro (añadir Notas)"; ?> 
+                 <?php $lugar=htmlspecialchars("otro");  echo "otro (añadir Notas)"; ?> 
             </option>
             
         </select>
     </div>
    
     <div class="formField">
-        <label class="formLabel" for="cuando">Fecha y hora</label>
-        <input id="cuando" type="datetime-local" class="formInput" name="cuando">
+        <label class="formLabel" for="fecha">Fecha y hora</label>
+        <input id="fecha" type="datetime-local" class="formInput" name="fecha">
     </div>
     
     <div class="formField">
