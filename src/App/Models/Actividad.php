@@ -196,4 +196,17 @@ class Actividad {
         }
         echo "Hemos eliminado la actividad";
     }
+
+
+    public function buscarActividad() {
+        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
+        $pdo = $db->getDBConnection();
+
+        $stmt = $pdo->query("select id_actividad from actividades 
+                            where fk_deporte = (select id_deporte where deporte = :deporte)
+                                and fecha = :fecha
+                                and fk_instalacion = :id_instalacion;");
+        $stmt->
+        
+    }
 }
