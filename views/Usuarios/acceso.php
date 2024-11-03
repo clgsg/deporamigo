@@ -9,11 +9,12 @@
         <label class="formLabel" for="email">Correo electrónico</label>
         <input id="email" type="email" class="formInput" placeholder="Email con el que te registraste" name="email">
     </div>
+    <br>
     <div class="formField">
         <label class="formLabel" for="pwd">Contraseña</label>
         <input id="pwd" type="password" class="formInput" placeholder="Contraseña" name="contraseña">
     </div>
-
+    <br>
     <input class="submitButton"  type="submit" value="Iniciar sesión">
 </form>
 <div class="">

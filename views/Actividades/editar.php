@@ -35,21 +35,24 @@
         <label class="formLabel" for="fecha">Fecha y hora</label>
         <input id="fecha" type="datetime-local" class="formInput" name="fecha">
     </div>
-    
+    <br>
     <div class="formField">
         <label class="formLabel" for="partMin">Part. mín.</label>
         <input id="partMin" type="text" class="formInput" placeholder="0" name="partMin">
     </div>
+    <br>
     <div class="formField">
         <label class="formLabel" for="partMax">Part. máx.</label>
         <input id="partMax" type="text" class="formInput" placeholder="0" name="partMax">
     </div>
+    <br>
     <div class="formField">
         <label class="formLabel" for="notasBox">Notas</label>
         <textarea id="notasBox" name="notas" rows="5" cols="50" placeholder="¿Algo que añadir? (Ejemplo: Falta equipamiento, se mantiene en caso de lluvia, etc.)"></textarea>
     </div>
+    <br>
     <div>
-    
+    <br>
     <button class="lightButton">Limpiar formulario</button>
     <button class="darkButton">Guardar cambios</button>
     <button class="redButton">Eliminar actividad</button>

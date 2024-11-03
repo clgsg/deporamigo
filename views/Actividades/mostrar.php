@@ -15,7 +15,7 @@
     <p>Lugar: 
         <?= htmlspecialchars($actividad["instalaciones"]) ?>
     </p>
-    
+    <br>
 <?php endforeach; ?>    
     </body>
 </html>
