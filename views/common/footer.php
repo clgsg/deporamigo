@@ -1,3 +1,6 @@
 
+<footer>
 
-<h2>Footer de nuestra página</h2>
+<p class="copyright">DeporAmigo - Todos los derechos reservados <?php echo date('Y'); ?> &copy;</p>
+
+</footer>
