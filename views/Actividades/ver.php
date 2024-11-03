@@ -6,7 +6,9 @@
     <p>Fecha: <?= htmlspecialchars($actividad["fecha"]) ?></p>
     <p>Lugar: <?= htmlspecialchars($actividad["lugar"]) ?></p>
     <br>
-    
 <?php endforeach; ?>    
-    </body>
+    
+<button class="darkButton"><a href="/actividades/crear">Crear actividad</a></button>
+
+</body>
 </html>

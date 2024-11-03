@@ -26,23 +26,25 @@ if($path === false)
 
 $router = new Common\Router;
 # controller=class; action=method
-#$router->add("/{controller}/{action}");
-#$router->add("/{controller}/{id}/{action}");
 
 $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/home", ["controller" => "home", "action" => "index"]);
 $router->add("/usuarios", ["controller" => "usuarios", "action" => "ver"]);
+$router->add("/actividades", ["controller" => "actividades", "action" => "verTodas"]);
+$router->add("/{controller}/{action}");
+
 $router->add("/usuarios/ver", ["controller" => "usuarios", "action" => "ver"]);
 $router->add("/usuarios/registrarse", ["controller" => "usuarios", "action" => "registrarse"]);
 $router->add("/usuarios/pwd", ["controller" => "usuarios", "action" => "pwd"]);
-$router->add("/usuarios/acceso", ["controller" => "usuarios", "action" => "acceso"]);
+$router->add("/usuarios/acceso", ["controller" => "usuarios", "action" => "acceder"]);
 $router->add("/usuarios/mostrar", ["controller" => "usuarios", "action" => "mostrar"]);
 
-$router->add("/actividades/ver", ["controller" => "actividades", "action" => "ver"]);
-$router->add("/actividades", ["controller" => "actividades", "action" => "ver"]);
+$router->add("/actividades/ver", ["controller" => "actividades", "action" => "verTodas"]);
 $router->add("/actividades/mostrar", ["controller" => "actividades", "action" => "mostrar"]);
-$router->add("/actividades/nueva", ["controller" => "actividades", "action" => "nuevaActividad"]);
-$router->add("/actividades/editar", ["controller" => "actividades", "action" => "editarActividad"]);
+$router->add("/actividades/crear", ["controller" => "actividades", "action" => "crear"]);
+$router->add("/actividades/editar", ["controller" => "actividades", "action" => "editar"]);
+$router->add("/actividades/eliminar", ["controller" => "actividades", "action" => "eliminar"]);
+#$router->add("/{controller}/{id}/{action}");
 
 $params = $router->match($path);
 

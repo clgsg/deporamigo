@@ -7,56 +7,20 @@ use PDO;
 use App\Database;
 use UnexpectedValueException;
 
-class Actividad {
-    public $id_usuario;
-    public $apodo;
-    public $id_actividad;
-    public $id_deporte;
-    public $deporte;
-    public $fecha;
-    public $lugar;
-    public $min_jugadores;
-    public $max_jugadores;
-    public $comentarios;
+class Actividad
+{
+    protected array $errors = [];
 
-    public function __construct($args = [])
+    protected function validar(array $data): void
     {
-        $this->id_usuario=$args["id_usuario"] ?? '';
-        $this->apodo=$args["apodo"] ?? '';
-        $this->id_actividad=$args["id_actividad"] ?? '';
-        $this->id_deporte=$args["id_deporte"] ?? '';
-        $this->deporte=$args["deporte"] ?? '';
-        $this->fecha=date($args["fecha"]) ?? '';
-        $this->lugar=$args["lugar"] ?? '';
-        $this->min_jugadores=$args["min_jugadores"] ?? '';
-        $this->max_jugadores=$args["max_jugadores"] ?? '';
-        $this->comentarios=$args["comentarios"] ?? '';
     }
 
-
-    public function validarNuevaActividad() {
-
-        if(!$this->id_deporte) {
-            self::$errores[] = "Debes elegir un deporte.";
-        }
-
-        if(!$this->fecha) {
-            self::$errores[] = 'Debes seleccionar fecha y hora.';
-        }
-
-        if(!$this->lugar) {
-            self::$errores[] = 'Debes seleccionar dónde se hará la actividad.';
-        }
-        
-        return self::$errores;
-    }
-
-    public  function getInfoAllActivities()
+    public  function verTodas()
     {
-        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
+        $db = new Database($_ENV["DB_HOST"], $_ENV["DB_NAME"], $_ENV["DB_USER"], $_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
-        
-        $query="
+
+        $query = "
             SELECT u.apodo, d.deporte, a.id_actividad , a.fecha, a.min_jugadores , a.max_jugadores , i.nombre_instalacion as lugar, a.comentarios 
             FROM actividades a
             join instalaciones i ON	a.fk_instalacion = i.id_instalacion
@@ -65,9 +29,9 @@ class Actividad {
         ";
 
         $stmt = $pdo->prepare($query);
-        $stmt -> execute();
+        $stmt->execute();
 
-        if($stmt === null) {
+        if ($stmt === null) {
             echo "No hemos encontrado ninguna actividad";
         } else {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -78,12 +42,12 @@ class Actividad {
 
     public  function infoActividadPorID(int $id_actividad)
     {
-        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
+        $db = new Database($_ENV["DB_HOST"], $_ENV["DB_NAME"], $_ENV["DB_USER"], $_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
-        
-        $id_actividad=3;
 
-        $query="
+        $id_actividad = 3;
+
+        $query = "
             SELECT u.apodo, d.deporte, a.id_actividad , a.fecha, a.min_jugadores , a.max_jugadores , i.nombre_instalacion as lugar, a.comentarios 
             FROM actividades a
             join instalaciones i ON	a.fk_instalacion = i.id_instalacion
@@ -93,9 +57,9 @@ class Actividad {
         ";
 
         $stmt = $pdo->prepare($query);
-        $stmt -> execute();
+        $stmt->execute();
 
-        if($stmt === null) {
+        if ($stmt === null) {
             echo "No hemos encontrado ninguna actividad";
         } else {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -104,35 +68,16 @@ class Actividad {
 
 
 
-   public  function nuevaActividad(string $apodo, string $deporte, string $fecha, string $lugar, int $min_jugadores=null, int $max_jugadores=null, string $comentarios)
-   #public function nueva()
+    #public  function crear(string $apodo, string $deporte, string $fecha, string $lugar, int $min_jugadores = null, int $max_jugadores = null, string $comentarios)
+    public function crear(array $infoActividad)
     {
-        
-
-
-
-        $apodo = $this->$apodo;
-        $deporte = $this->$deporte;
-        $fecha = $this->$fecha;
-        $lugar = $this->$lugar;
-        $min_jugadores = $this->$min_jugadores;
-        $max_jugadores = $this->$max_jugadores;
-        $comentarios = $this->$comentarios;
-        
-      
-
-        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
+        $this->validar($infoActividad);
+        if (!empty($this->errors)){
+            return false;
+        }
+        $db = new Database($_ENV["DB_HOST"], $_ENV["DB_NAME"], $_ENV["DB_USER"], $_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
 
-
-    /* COMPROBAR SI SE LLAMA ESTA FUNCIÓN AÑADIENDO ACTIVIDAD "EN BRUTO"   
-    $query="
-        insert into actividades (fk_usuario, fk_deporte, fecha, fk_instalacion, min_jugadores, max_jugadores, comentarios)
-        values (1, 3, '2024-12-23', 6, 2, 5, 'Comentario de prueba'); 
-    ";
-    */
-
-    
         $query = "insert into actividades (fk_usuario, fk_deporte, fecha, fk_instalacion, min_jugadores, max_jugadores)
             values (
                 (select id_usuario from usuarios where apodo = :apodo), 
@@ -146,52 +91,48 @@ class Actividad {
 
         $stmt = $pdo->prepare($query);
 
-        $stmt->bindValue(':apodo', $apodo, PDO::PARAM_STR);
-        $stmt->bindValue(':deporte', $deporte, PDO::PARAM_STR);
-        $stmt->bindValue(':fecha', $fecha, PDO::PARAM_STR);
-        $stmt->bindValue(':lugar', $lugar, PDO::PARAM_STR);
-        $stmt->bindValue(':min_jugadores', $min_jugadores, PDO::PARAM_INT);
-        $stmt->bindValue(':max_jugadores', $max_jugadores, PDO::PARAM_INT);
-    
+        $stmt->bindValue(':apodo', $infoActividad["apodo"], PDO::PARAM_STR);
+        $stmt->bindValue(':deporte', $infoActividad["deporte"], PDO::PARAM_STR);
+        $stmt->bindValue(':fecha', $infoActividad["fecha"], PDO::PARAM_STR);
+        $stmt->bindValue(':lugar', $infoActividad["lugar"], PDO::PARAM_STR);
+        $stmt->bindValue(':min_jugadores', $infoActividad["partMin"], PDO::PARAM_INT);
+        $stmt->bindValue(':max_jugadores', $infoActividad["partMax"], PDO::PARAM_INT);
+        $stmt->bindValue(':max_jugadores', $infoActividad["notas"], PDO::PARAM_INT);
 
-        $stmt = $pdo->prepare($query);
         $stmt->execute();
-        
 
-        if($stmt === null) {
+        if ($stmt === null) {
             echo "No hemos encontrado ninguna actividad";
         } else {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-
     }
-    
 
-    public  function editar(int $id_actividad){
 
-        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
+    public  function editar(int $id_actividad)
+    {
+        $db = new Database($_ENV["DB_HOST"], $_ENV["DB_NAME"], $_ENV["DB_USER"], $_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
 
-
-                                        /*
-                                        $infoActividad= "SELECT u.apodo, d.deporte, a.id_actividad , a.fecha, a.min_jugadores , a.max_jugadores , i.nombre_instalacion, a.comentarios 
-                                        FROM actividades a
-                                        join instalaciones i ON	a.fk_instalacion = i.id_instalacion
-                                        join deportes d on a.fk_deporte = d.id_deporte 
-                                        join usuarios u on u.id_usuario = a.fk_usuario
-                                        where a.id_actividad = :id_actividad;";
-                                        */
-                                        /*  COMPROBAR SI SE LLAMA ESTA FUNCIÓN MODIFICANDO ACTIVIDAD "EN BRUTO"   
-                                                $stmt = $info->$pdo->query("update activity
-                                                                            set 
-                                                                                fecha = '1999-03-20'
-                                                                                fk_instalacion = 6,
-                                                                                min_jugadores = 20,
-                                                                                max_jugadores = 21
-                                                                            where id_actividad = 5;
-                                                ");
-                                                */
-        $query="
+        /*
+            $infoActividad= "SELECT u.apodo, d.deporte, a.id_actividad , a.fecha, a.min_jugadores , a.max_jugadores , i.nombre_instalacion, a.comentarios 
+            FROM actividades a
+            join instalaciones i ON	a.fk_instalacion = i.id_instalacion
+            join deportes d on a.fk_deporte = d.id_deporte 
+            join usuarios u on u.id_usuario = a.fk_usuario
+            where a.id_actividad = :id_actividad;";
+            */
+        /*  COMPROBAR SI SE LLAMA ESTA FUNCIÓN MODIFICANDO ACTIVIDAD "EN BRUTO"   
+                    $stmt = $info->$pdo->query("update activity
+                                                set 
+                                                    fecha = '1999-03-20'
+                                                    fk_instalacion = 6,
+                                                    min_jugadores = 20,
+                                                    max_jugadores = 21
+                                                where id_actividad = 5;
+                    ");
+                    */
+        $query = "
                 update activity
                 set 
                     fecha = :fecha, 
@@ -203,13 +144,13 @@ class Actividad {
 
 
         $stmt = $pdo->prepare($query);
-        
+
         $stmt->bindValue(':id_actividad', $id_actividad, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_ASSOC, 'Actividad');
         $stmt->execute();
-        
 
-        if($stmt === null) {
+
+        if ($stmt === null) {
             throw new UnexpectedValueException("No hemos encontrado ninguna actividad");
         }
         # return each row as an array indexed by column name as returned in the corresponding result set.
@@ -218,31 +159,33 @@ class Actividad {
 
     /** Elimina la actividad cuyo id se haya pasado como parámetro
      * @param id_actividad
-    */
-    public  function eliminarActividad(int $id_actividad){
-        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
+     */
+    public  function eliminar(int $id_actividad)
+    {
+        $db = new Database($_ENV["DB_HOST"], $_ENV["DB_NAME"], $_ENV["DB_USER"], $_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
 
         $stmt = $pdo->query("delete from actividades where id_actividad = :id_actividad;");
-        
+
         $stmt->bindValue(':id_actividad', $id_actividad, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_ASSOC, 'Actividad');
         $stmt->execute();
-        
 
-        if($stmt === null) {
+
+        if ($stmt === null) {
             throw new UnexpectedValueException("No hemos encontrado ninguna actividad");
         }
         echo "Hemos eliminado la actividad";
     }
 
 
-    public function buscarActividad(int $id_deporte, string $fecha, int $id_instalacion ) {
+    public function buscar(int $id_deporte, string $fecha, int $id_instalacion)
+    {
         $this->$id_deporte = $id_deporte;
         $this->$fecha = $fecha;
         $this->$id_instalacion = $id_instalacion;
 
-        $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
+        $db = new Database($_ENV["DB_HOST"], $_ENV["DB_NAME"], $_ENV["DB_USER"], $_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
 
         $stmt = $pdo->query("select id_actividad from actividades 
@@ -253,10 +196,12 @@ class Actividad {
         $stmt->bindValue(':id_deporte', $id_deporte, PDO::PARAM_INT);
         $stmt->bindValue(':fecha', $fecha, PDO::PARAM_STR);
         $stmt->bindValue(':id_instalacion', $id_instalacion, PDO::PARAM_INT);
-        
-        $stmt->setFetchMode(PDO::FETCH_ASSOC, 'Actividad');  
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC, 'Actividad');
 
         $stmt->execute();
-        
     }
+
+
+    
 }

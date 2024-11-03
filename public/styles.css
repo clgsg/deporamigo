@@ -1,61 +1,69 @@
-html{
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-	margin: 2em;
+html {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  margin: 2em;
 }
 h1 {
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	font-weight: 600;
-	color: lightcoral;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 600;
+  color: lightcoral;
 }
 
 h2 {
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	color: coral;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: coral;
 }
 
-div .formField{
-	width: min(95%, 120rem);
+div .formField {
+  width: min(95%, 120rem);
 }
 
-.submitButton, .darkButton {
-	border-radius: 5px;
-	color: #f8f1f1;
-	background-color: coral;
+.darkButton {
+  border-radius: 5px;
+  color: #f8f1f1;
+  background-color: coral;
 }
 
 .lightButton {
-	border-radius: 5px;
-	color: coral;
-	background-color: #f8f1f1;
+  border-radius: 5px;
+  color: coral;
+  background-color: #f8f1f1;
 }
 
-.redButton{
-	border-radius: 5px;
-	color: #f8f1f1;
-	background-color: rgb(180, 19, 19);
-	&:hover {
-		filter: invert(100%);
-	}
+.redButton {
+  border-radius: 5px;
+  color: #f8f1f1;
+  background-color: rgb(180, 19, 19);
+  &:hover {
+    filter: invert(100%);
+  }
 }
 
 .disabledFormLabel {
-	color: lightslategray;
+  color: lightslategray;
 }
 
 .disabledField {
-	color: lightslategray;
-	background-color: lightgrey;
+  color: lightslategray;
+  background-color: lightgrey;
 }
 
-.footer{
-	padding: 1rem;
-	
-	background-color: coral;
+.encabezado {
+  padding: 1rem;
+  background-color: coral;
+  color: #f8f1f1;
+  text-align: center;
+}
 
-	.copyright{
-		color: #f8f1f1;
-		text-align: center;
-		font-size: 0.8rem;
-		font-weight: 100;
-	}
+.footer {
+  padding: 1rem;
+
+  background-color: coral;
+
+  .copyright {
+    color: #f8f1f1;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 100;
+  }
 }

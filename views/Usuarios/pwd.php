@@ -13,7 +13,7 @@
         <input id="correo" type="email">
     </div>
     <br>
-    <button class="darkButton" >Recuperar acceso</button>
+    <button class="darkButton">Recuperar acceso</button>
 </form>
 
 </body>
