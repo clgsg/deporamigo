@@ -33,6 +33,9 @@ div .formField{
 	border-radius: 5px;
 	color: #f8f1f1;
 	background-color: rgb(180, 19, 19);
+	&:hover {
+		filter: invert(100%);
+	}
 }
 
 .disabledFormLabel {
@@ -42,4 +45,17 @@ div .formField{
 .disabledField {
 	color: lightslategray;
 	background-color: lightgrey;
+}
+
+.footer{
+	padding: 1rem;
+	
+	background-color: coral;
+
+	.copyright{
+		color: #f8f1f1;
+		text-align: center;
+		font-size: 0.8rem;
+		font-weight: 100;
+	}
 }

@@ -1,6 +1,6 @@
 <h1>Eliminar actividad</h1>
 
-<form method="post" action="/actividades/<?= $actividad["id"] ?>/eliminar">
+<form method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
 <p>¿Eliminar esta actividad?</p>
 

@@ -19,9 +19,9 @@ class Actividades {
 
         
     }
-    public function mostrar(){
+    public function mostrar(string $id){
         $model = new Actividad;
-        $actividades = $model->getInfoAllActivities();
+        $actividades = $model->infoActividadPorID($id);
         
         $viewer = new Viewer;
         

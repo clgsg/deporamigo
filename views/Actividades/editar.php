@@ -1,5 +1,5 @@
 <h1>Editar actividad</h1>
-<form class="form" method="post">
+<form class="form" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     
     <div class="formField">
         <label class="disabledFormLabel" for="tipoActividad">Tipo de actividad</label>

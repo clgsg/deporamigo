@@ -1,5 +1,5 @@
 <h1>Crear actividad</h1>
-<form class="form" method="post">
+<form class="form" method="post" action="<?php htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <div style="color:red" hidden>
         <label for="apodo">Apodo (usuario conectado)</label>
         <input type="text" name="apodo" id="apodo" >

@@ -25,6 +25,13 @@ class Router {
         $pattern= "#^/(?<controller>[a-z]+)/(?<action>[a-z]+)$#";
         
         foreach ($this->routes as $route){
+
+             # If a given route-path matches $path, return its parameters
+             if ($route["path"] === $path) {
+                return $route["params"];
+             }
+             
+             
             /**  Does $path match a regular expression pattern?
              * @return boolean
              * $matches[0] will contain the text that matched the full pattern

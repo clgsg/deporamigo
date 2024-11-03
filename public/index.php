@@ -26,16 +26,16 @@ if($path === false)
 
 $router = new Common\Router;
 # controller=class; action=method
-$router->add("/{controller}/{action}");
-$router->add("/{controller}/{id}/{action}");
-/*
+#$router->add("/{controller}/{action}");
+#$router->add("/{controller}/{id}/{action}");
+
 $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/home", ["controller" => "home", "action" => "index"]);
 $router->add("/usuarios", ["controller" => "usuarios", "action" => "ver"]);
 $router->add("/usuarios/ver", ["controller" => "usuarios", "action" => "ver"]);
 $router->add("/usuarios/registrarse", ["controller" => "usuarios", "action" => "registrarse"]);
 $router->add("/usuarios/pwd", ["controller" => "usuarios", "action" => "pwd"]);
-$router->add("usuarios/acceso", ["controller" => "usuarios", "action" => "acceso"]);
+$router->add("/usuarios/acceso", ["controller" => "usuarios", "action" => "acceso"]);
 $router->add("/usuarios/mostrar", ["controller" => "usuarios", "action" => "mostrar"]);
 
 $router->add("/actividades/ver", ["controller" => "actividades", "action" => "ver"]);
@@ -43,9 +43,19 @@ $router->add("/actividades", ["controller" => "actividades", "action" => "ver"])
 $router->add("/actividades/mostrar", ["controller" => "actividades", "action" => "mostrar"]);
 $router->add("/actividades/nueva", ["controller" => "actividades", "action" => "nuevaActividad"]);
 $router->add("/actividades/editar", ["controller" => "actividades", "action" => "editarActividad"]);
-*/
 
-$dispatcher = new Common\Dispatcher($router);
+$params = $router->match($path);
 
-# Llamamos el método 'handle' del dispatcher y le pasamos la ruta $path
-$dispatcher->handle($path);
+if ($params === false) {
+    exit("No se encontraron rutas para '$path'");
+}
+
+# Add path of namespace to $controller and turn name to initial uppercase (instead of hardcoding it in the list)
+$controller = "App\Controllers\\" . ucwords($params["controller"]);
+$action = $params["action"];
+
+# Dynamically creating an object of the type defined in $controller
+$controller_object = new $controller;
+
+# We call the method defined as $action in the query string for the controller
+$controller_object->$action();

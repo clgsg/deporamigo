@@ -8,13 +8,48 @@ use App\Database;
 use UnexpectedValueException;
 
 class Actividad {
-    private $id_actividad;
-    private $deporte;
-    private $fecha;
-    private $lugar;
-    private $min_jugadores;
-    private $max_jugadores;
-    private $comentarios;
+    public $id_usuario;
+    public $apodo;
+    public $id_actividad;
+    public $id_deporte;
+    public $deporte;
+    public $fecha;
+    public $lugar;
+    public $min_jugadores;
+    public $max_jugadores;
+    public $comentarios;
+
+    public function __construct($args = [])
+    {
+        $this->id_usuario=$args["id_usuario"] ?? '';
+        $this->apodo=$args["apodo"] ?? '';
+        $this->id_actividad=$args["id_actividad"] ?? '';
+        $this->id_deporte=$args["id_deporte"] ?? '';
+        $this->deporte=$args["deporte"] ?? '';
+        $this->fecha=date($args["fecha"]) ?? '';
+        $this->lugar=$args["lugar"] ?? '';
+        $this->min_jugadores=$args["min_jugadores"] ?? '';
+        $this->max_jugadores=$args["max_jugadores"] ?? '';
+        $this->comentarios=$args["comentarios"] ?? '';
+    }
+
+
+    public function validarNuevaActividad() {
+
+        if(!$this->id_deporte) {
+            self::$errores[] = "Debes elegir un deporte.";
+        }
+
+        if(!$this->fecha) {
+            self::$errores[] = 'Debes seleccionar fecha y hora.';
+        }
+
+        if(!$this->lugar) {
+            self::$errores[] = 'Debes seleccionar dónde se hará la actividad.';
+        }
+        
+        return self::$errores;
+    }
 
     public  function getInfoAllActivities()
     {
@@ -69,10 +104,13 @@ class Actividad {
 
 
 
-   #public  function nuevaActividad(string $apodo, string $deporte, string $fecha, string $lugar, int $min_jugadores=null, int $max_jugadores=null, string $comentarios)
-   public function nueva()
+   public  function nuevaActividad(string $apodo, string $deporte, string $fecha, string $lugar, int $min_jugadores=null, int $max_jugadores=null, string $comentarios)
+   #public function nueva()
     {
-        /*
+        
+
+
+
         $apodo = $this->$apodo;
         $deporte = $this->$deporte;
         $fecha = $this->$fecha;
@@ -80,20 +118,21 @@ class Actividad {
         $min_jugadores = $this->$min_jugadores;
         $max_jugadores = $this->$max_jugadores;
         $comentarios = $this->$comentarios;
-        */
+        
       
 
         $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
 
 
- # COMPROBAR SI SE LLAMA ESTA FUNCIÓN AÑADIENDO ACTIVIDAD "EN BRUTO"   
+    /* COMPROBAR SI SE LLAMA ESTA FUNCIÓN AÑADIENDO ACTIVIDAD "EN BRUTO"   
     $query="
         insert into actividades (fk_usuario, fk_deporte, fecha, fk_instalacion, min_jugadores, max_jugadores, comentarios)
         values (1, 3, '2024-12-23', 6, 2, 5, 'Comentario de prueba'); 
     ";
+    */
 
-    /*
+    
         $query = "insert into actividades (fk_usuario, fk_deporte, fecha, fk_instalacion, min_jugadores, max_jugadores)
             values (
                 (select id_usuario from usuarios where apodo = :apodo), 
@@ -113,7 +152,7 @@ class Actividad {
         $stmt->bindValue(':lugar', $lugar, PDO::PARAM_STR);
         $stmt->bindValue(':min_jugadores', $min_jugadores, PDO::PARAM_INT);
         $stmt->bindValue(':max_jugadores', $max_jugadores, PDO::PARAM_INT);
-        */
+    
 
         $stmt = $pdo->prepare($query);
         $stmt->execute();
@@ -198,15 +237,26 @@ class Actividad {
     }
 
 
-    public function buscarActividad() {
+    public function buscarActividad(int $id_deporte, string $fecha, int $id_instalacion ) {
+        $this->$id_deporte = $id_deporte;
+        $this->$fecha = $fecha;
+        $this->$id_instalacion = $id_instalacion;
+
         $db = new Database($_ENV["DB_HOST"],$_ENV["DB_NAME"],$_ENV["DB_USER"],$_ENV["DB_PASSWORD"]);
         $pdo = $db->getDBConnection();
 
         $stmt = $pdo->query("select id_actividad from actividades 
-                            where fk_deporte = (select id_deporte where deporte = :deporte)
+                            where fk_deporte = :id_deporte
                                 and fecha = :fecha
                                 and fk_instalacion = :id_instalacion;");
-        $stmt->
+
+        $stmt->bindValue(':id_deporte', $id_deporte, PDO::PARAM_INT);
+        $stmt->bindValue(':fecha', $fecha, PDO::PARAM_STR);
+        $stmt->bindValue(':id_instalacion', $id_instalacion, PDO::PARAM_INT);
+        
+        $stmt->setFetchMode(PDO::FETCH_ASSOC, 'Actividad');  
+
+        $stmt->execute();
         
     }
 }
